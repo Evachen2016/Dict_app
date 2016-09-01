@@ -85,4 +85,7 @@ public class dict extends AppCompatActivity {
         });
     }
 
+    public void changeCliked(View view) {
+        generateWordToGuess();
+    }
 }
