@@ -13,18 +13,6 @@ import java.util.*;
 
 public class dict extends AppCompatActivity {
 
-    private static final String[] WORDS = {
-            "abate", "to lessen to subside",
-            "abeyance", "suspended action",
-            "abjure", "promise or swear to give up",
-            "abrogate", "repeal or annul by authority",
-            "abstruse", "difficult to comprehend obscure",
-            "acarpous", "effete no longer fertile worn out",
-            "accretion", "the growing of separate things into one",
-            "agog", "eager/excited",
-            "alloy", "to debase by mixing with something inferior",
-            "amortize", "end (a debt) by setting aside money"
-    };
     private ArrayList<String> words;
     private String wordToShow;
     private ArrayList<String> fiveDef;
@@ -43,9 +31,15 @@ public class dict extends AppCompatActivity {
         words = new ArrayList<>();
         fiveDef = new ArrayList<>();
         dict = new HashMap<String, String>();
-        for (int i = 0; i < WORDS.length; i+=2) {
-            dict.put(WORDS[i], WORDS[i + 1]);
-            words.add(WORDS[i]);
+        Scanner scan = new Scanner(getResources().openRawResource(R.raw.grewords));
+        while (scan.hasNextLine()) {
+            String text = scan.nextLine();
+            String[] parts = text.split("\t");
+            if (parts.length < 2) continue;
+            String word = parts[0];
+            String defn = parts[1];
+            dict.put(word, defn);
+            words.add(word);
         }
     }
 
